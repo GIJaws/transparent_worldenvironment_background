@@ -30,51 +30,7 @@ func _ready():
 
 		# Connect to the right controller's button_pressed signal
 		right_controller.button_pressed.connect(_on_controller_button_pressed)
-		# _setup_space_environment()
 
-func _process(delta: float) -> void:
-	if false and not Engine.is_editor_hint() and _is_flying:
-		# Get controller input for flying
-		var input_vector = Vector2.ZERO
-
-		# Use right controller joystick for movement
-		if right_controller:
-			input_vector = right_controller.get_vector2("Primary joystick/thumbstick/trackpad")
-
-		# Calculate movement direction based on controller orientation
-		var forward = -right_controller.global_transform.basis.z
-		var right = right_controller.global_transform.basis.x
-
-		# Combine movements
-		_flight_direction = (forward * input_vector.y + right * input_vector.x).normalized()
-
-		# Move the XROrigin3D (which moves the player and skybox)
-		if _flight_direction.length() > 0.1:
-			$XROrigin3D.global_position += _flight_direction * FLYING_SPEED * delta
-
-func _setup_space_environment() -> void:
-	# Create a large sphere for the skybox
-	var sphere_mesh = SphereMesh.new()
-	sphere_mesh.radius = 50.0  # Large enough to encompass the play area
-	sphere_mesh.height = 100.0
-	sphere_mesh.is_hemisphere = false
-
-	# Create the skybox instance
-	_skybox = MeshInstance3D.new()
-	_skybox.mesh = sphere_mesh
-	_skybox.scale = Vector3(-1, 1, 1)  # Invert normals by scaling X negative
-
-	# Create space material
-	var space_material = StandardMaterial3D.new()
-	space_material.shading_mode = BaseMaterial3D.SHADING_MODE_UNSHADED
-	space_material.albedo_color = Color(0.0, 0.0, 0.1)  # Dark blue base
-	space_material.emission_enabled = true
-	space_material.emission = Color(0.2, 0.2, 0.4)  # Slight blue glow
-
-	_skybox.material_override = space_material
-
-	# Add to XROrigin3D to move with player
-	$XROrigin3D.add_child(_skybox)
 
 func configure_passthrough() -> void:
 	# Configure for projected passthrough
