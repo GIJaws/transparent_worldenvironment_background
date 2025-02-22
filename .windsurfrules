@@ -1,0 +1,49 @@
+I am using Godot 4.4 Beta4 to create a VR/AR game using OpenXR for the meta quest 3/3S
+Alway search for Godot docs online as you have limited knowledge on gdscript `.gd` files. 
+Docs are available at: https://docs.godotengine.org/en/latest/
+Avoid documentation that is outdated or not for version 4.4
+DO NOT EDIT `.tscn` scene files, they need to be edited in the Godot editor
+
+I am using the following plugins to make working in VR/AR in Godot easier:
+ - `Godot OpenXR Vendors plugin`: https://godotvr.github.io/godot_openxr_vendors/index.html
+ - `Godot OpenXR Tools`: https://godotvr.github.io/godot-xr-tools/docs/home/
+
+ Search the folder "Godot Docs" for the docs for these plugins instead of going to the web.
+
+# OpenXR Vendor Plugin Features
+
+## Passthrough Functionality
+The OpenXR Vendor plugin provides extensive passthrough capabilities through several key components:
+
+1. `OpenXRFbPassthroughExtensionWrapper`:
+   - Handles basic passthrough functionality
+   - Supports automatic passthrough activation when environment blend mode is set to alpha blend
+   - Features customizable passthrough settings:
+     - Color mapping and filtering options
+     - Edge detection with customizable colors
+     - Opacity control
+     - Support for color Look-Up Tables (LUTs)
+
+2. `OpenXRFbPassthroughGeometry`:
+   - Allows controlling where passthrough is rendered in the scene
+   - Can be used to create specific passthrough areas or windows
+
+3. `OpenXRMetaPassthroughColorLut`:
+   - Enables color correction and filtering of passthrough imagery
+   - Supports custom color grading through Look-Up Tables
+
+## Scene Understanding
+The plugin provides scene understanding capabilities through:
+
+1. `OpenXRFbSceneManager`:
+   - Manages Meta's Scene Understanding features
+   - Automatically creates scene anchors when an OpenXR session starts
+   - Allows registration of scenes to be instantiated for discovered anchors
+   - Each scene anchor is added as a child of an XRAnchor3D node for proper positioning
+
+2. `OpenXRFbSpatialEntity` and `OpenXRFbSpatialAnchorManager`:
+   - Handle spatial anchors and persistent locations in the physical space
+   - Enable tracking and persistence of virtual objects in the real world
+   - Allow for saving and loading spatial anchors between sessions
+
+These components are specifically designed for Meta Quest devices and provide the foundation for creating mixed reality experiences with proper scene understanding and passthrough capabilities.

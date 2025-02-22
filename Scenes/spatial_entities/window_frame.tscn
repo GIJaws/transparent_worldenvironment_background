@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://5q1qxr5u5tyk"]
+
+[ext_resource type="Script" uid="uid://c8le1y4hb1aki" path="res://Scenes/spatial_entities/window_frame.gd" id="1_vm3rq"]
+
+[node name="StaticBody3D" type="StaticBody3D" groups=["window_frame"]]
+script = ExtResource("1_vm3rq")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+operation = 2

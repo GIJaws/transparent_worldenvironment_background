@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dxiohdfssqo5g"]
+
+[ext_resource type="Script" uid="uid://br4qk88vyvarh" path="res://Scenes/spatial_entities/room_surface.gd" id="1_svnwh"]
+[ext_resource type="Material" uid="uid://hc8mqj4xw82a" path="res://Materials/shadow_material.tres" id="2_5a4ie"]
+
+[node name="StaticBody3D" type="StaticBody3D" groups=["room_surface"]]
+script = ExtResource("1_svnwh")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+flip_faces = true
+material = ExtResource("2_5a4ie")
+
+[node name="OpenXRFbPassthroughGeometry" type="OpenXRFbPassthroughGeometry" parent="."]

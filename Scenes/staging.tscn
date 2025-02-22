@@ -1,0 +1,65 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgf4iyevsaabr"]
+
+[ext_resource type="PackedScene" uid="uid://bnqnnnet4dw12" path="res://addons/godot-xr-tools/staging/staging.tscn" id="1_ftoao"]
+
+[sub_resource type="Gradient" id="Gradient_ftoao"]
+colors = PackedColorArray(0.665419, 0.000110701, 0.579635, 1, 0, 0.557212, 0.557292, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_q5hip"]
+seed = 1
+frequency = 0.0267738
+fractal_gain = 0.405
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ftoao"]
+color_ramp = SubResource("Gradient_ftoao")
+noise = SubResource("FastNoiseLite_q5hip")
+
+[sub_resource type="Animation" id="Animation_e4s17"]
+resource_name = "Loading Screen"
+length = 10.0
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoadingScreen:splash_screen:noise:fractal_gain")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0, 1, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0, 10)
+}
+
+[sub_resource type="Animation" id="Animation_y7god"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("LoadingScreen:splash_screen:noise:fractal_gain")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0.405, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mdgjc"]
+_data = {
+&"Loading Screen": SubResource("Animation_e4s17"),
+&"RESET": SubResource("Animation_y7god")
+}
+
+[node name="Staging" instance=ExtResource("1_ftoao")]
+main_scene = "uid://cm4frcf47fifa"
+prompt_for_continue = false
+
+[node name="LoadingScreen" parent="." index="2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0132179, 0, -0.0232649)
+splash_screen = SubResource("NoiseTexture2D_ftoao")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="LoadingScreen" index="3"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_mdgjc")
+}
+autoplay = "Loading Screen"

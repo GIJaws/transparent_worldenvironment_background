@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwff1j6nveywk"]
+
+[ext_resource type="Script" uid="uid://bqqw2dkf1fcx1" path="res://Scenes/spatial_entities/basic_spatial_label.gd" id="1_qnspk"]
+
+[node name="BasicSpatialLabel" type="StaticBody3D"]
+script = ExtResource("1_qnspk")
+
+[node name="Label3D" type="Label3D" parent="."]
