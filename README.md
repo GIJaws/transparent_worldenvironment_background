@@ -8,7 +8,7 @@
 
 This demo project highlights an issue where the WorldEnvironment background appears transparent when using OpenXR in Godot, despite background transparency being disabled.
 
-## Expected Behavior
+## Expected Behavior / MY ASSUMPTION ON HOW IT SHOULD WORK
 
 The WorldEnvironment should render as an opaque background with a sky shader or solid color, visible through the window cutout created using PassthroughGeometry.
 
